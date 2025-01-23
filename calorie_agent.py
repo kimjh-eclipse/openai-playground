@@ -25,8 +25,7 @@ STANDARD_PER_SERVING: 이 음식의 standard_per_serving을 넣어줘.
 CALORIE: standard 칼로리를 넣어줘.
 
 PRIMARY_NUTRITIONAL_COMPONENT: 음식에 대한 주성분을 넣어줘.
-만약 두개 이상의 주성분이 있다면 쉼표로 구분해서 넣어줘.
-"""
+만약 두개 이상의 주성분이 있다면 쉼표로 구분해서 넣어줘."""
         self._food_image_url = None
         self._food_name = None
 
