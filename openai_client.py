@@ -1,30 +1,37 @@
 import array
 from typing import Any
 
-from openai.types.chat import ChatCompletion, ChatCompletionChunk
+from openai.types.chat import ChatCompletion
 
 from settings.env import env_manager
 
-from openai import OpenAI, Stream
+from openai import OpenAI
 
 
 class OpenAIClient:
     GPT_MODEL_4O = "gpt-4o"
     GPT_MODEL_4O_MINI = "gpt-4o-mini"
+    GPT_MODEL_O3_MINI = "o3-mini"
     GPT_MODEL_3_5_TURBO = "gpt-3.5-turbo"
     ROLE_USER = "user"
     ROLE_SYSTEM = "system"
     ROLE_ASSISTANT = "assistant"
 
-    def __init__(self, openai_model=GPT_MODEL_4O_MINI):
+    def __init__(
+            self, openai_model: str=GPT_MODEL_4O_MINI,
+            timeout: float=15.0,
+            temperature: float=0.0,
+    ):
         self._client = OpenAI(
             organization=env_manager.get("OPENAI_ORGANIZATION_ID"),
             project=env_manager.get("OPENAI_PROJECT_ID"),
             api_key=env_manager.get("OPENAI_API_KEY"),
+            timeout=timeout,
         )
         self._model = openai_model
         self._prompt_tokens = 0
         self._completion_tokens = 0
+        self._temperature = temperature
 
     def get_token(self) -> int:
         return self._prompt_tokens + self._completion_tokens
@@ -78,7 +85,7 @@ class OpenAIClient:
     def completions(self, messages: Any) -> ChatCompletion | None:
         try:
             response = self._client.chat.completions.create(
-                messages=messages, model=self._model, temperature=0.0, n=1
+                messages=messages, model=self._model, temperature=self._temperature, n=1
             )
             self._prompt_tokens += response.usage.prompt_tokens
             self._completion_tokens += response.usage.completion_tokens
