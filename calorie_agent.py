@@ -11,7 +11,7 @@ class CalorieAgent(OpenAIClient):
 JSON 키는 모두 소문자로 전환해줘."""
     PROMPT_TEXT_INPUT_HEADER = "의 음식 정보를 알려줘. 아래 줄의 형식으로 답변해줘."
     PROMPT_COMMON_HEADER = \
-"""한국어로 답변해줘. 답변에는 오직 JSON형식으로만 답변해야 해.
+"""너는 최고의 한국인 영양사야. 한국어로 답변해줘. 답변에는 오직 JSON형식으로만 답변해야 해.
 아래 줄을 키로 하는 JSON 리스트 아이템으로만 답변해줘. JSON 키는 모두 소문자로 전환해줘.
 
 JSON 키는 아래와 같아."""
