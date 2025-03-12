@@ -28,8 +28,7 @@ JSON 키는 아래와 같아."""
         "calorie": "단위는 빼고 숫자만 standard 칼로리를 넣어줘.",
         "primary_nutritional_component": """음식에 대한 주성분을 넣어줘.
 만약 두개 이상의 주성분이 있다면 쉼표로 구분해서 넣어줘.""",
-        "position_left_top": "음식의 이미지에서 픽셀 기준으로 음식의 이미지의 왼쪽 상단 위치를 넣어줘.",
-        "position_right_buttom": "음식의 이미지에서 픽셀 기준으로 음식의 이미지의 오른쪽 하단 위치를 넣어줘."
+        "position_center": "전달한 전체 이미지에서 음식의 중심 좌표를 x, y형태로 넣어줘.",
     }
     def __init__(self, openai_model=OpenAIClient.GPT_MODEL_4O_MINI):
         super().__init__(openai_model)
